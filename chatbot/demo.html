@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GROZY - Demo Standalone</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #4CAF50, #388E3C);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f5f7fa;
+            border-radius: 10px;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .section h2 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        
+        .section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .section li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .section li:last-child {
+            border-bottom: none;
+        }
+        
+        .button {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin: 10px;
+        }
+        
+        .button:hover {
+            background: #388E3C;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        .alert {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            color: #856404;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .code {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        
+        .step {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #4CAF50;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛒 GROZY</h1>
+            <p>Sistema Inteligente de Optimización de Compras</p>
+        </div>
+        
+        <div class="content">
+            <div class="alert">
+                <strong>⚠️ Instrucciones de Inicio</strong><br>
+                Esta es una página de demostración. Para usar el chatbot completo, sigue los pasos a continuación.
+            </div>
+            
+            <div class="section">
+                <h2>🚀 Inicio Rápido</h2>
+                
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <strong>Abre una terminal en la carpeta del proyecto</strong>
+                    <div class="code">cd c:\Users\Franco\Downloads\Evaluacion_1_caso_GROZY-main</div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <strong>Instala las dependencias (si no lo has hecho)</strong>
+                    <div class="code">pip install flask flask-cors</div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <strong>Inicia el servidor API</strong>
+                    <div class="code">python grozy_api.py</div>
+                </div>
+                
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <strong>Abre el chatbot</strong>
+                    <div class="code">chatbot/index.html</div>
+                    <p style="margin-top: 10px; color: #666;">
+                        Haz doble clic en el archivo o ábrelo desde el navegador
+                    </p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>📋 Opciones de Ejecución</h2>
+                <ul>
+                    <li>
+                        <strong>🖥️ Terminal (CLI)</strong><br>
+                        <code>python grozy_agent_v2.py</code><br>
+                        Interfaz de línea de comandos interactiva
+                    </li>
+                    <li>
+                        <strong>📓 Jupyter Notebook</strong><br>
+                        <code>jupyter notebook agente_grozy.ipynb</code><br>
+                        Notebook educativo con ejemplos paso a paso
+                    </li>
+                    <li>
+                        <strong>🌐 Chatbot Web</strong><br>
+                        <code>python grozy_api.py</code> + abrir <code>chatbot/index.html</code><br>
+                        Interfaz web moderna y visual
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>💬 Ejemplos de Consultas</h2>
+                <ul>
+                    <li>🔍 "Busca lácteos bajos en grasa"</li>
+                    <li>📊 "Dame estadísticas de productos"</li>
+                    <li>🛒 "Genera un carro vegetariano para 3 personas con $25000"</li>
+                    <li>🥗 "Carro fitness para 2 personas, presupuesto $20000"</li>
+                    <li>👨‍👩‍👧‍👦 "Carro familiar para 4 personas con $30000"</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>📚 Documentación</h2>
+                <ul>
+                    <li><strong>README.md</strong> - Documentación principal del proyecto</li>
+                </ul>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="index.html" class="button" onclick="alert('Recuerda primero debes iniciar el servidor con: python grozy_api.py');">
+                    🚀 Abrir Chatbot
+                </a>
+                <a href="https://github.com" class="button" target="_blank">
+                    📖 Ver Documentación
+                </a>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px; color: #666;">
+                <p><strong>Versión 1.0</strong> | Creado por Franco | Octubre 2025</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

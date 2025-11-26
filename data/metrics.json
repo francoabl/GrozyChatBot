@@ -1,0 +1,70 @@
+{
+  "total_requests": 2,
+  "successful_requests": 2,
+  "failed_requests": 0,
+  "success_rate": 100.0,
+  "error_rate": 0.0,
+  "avg_latency": 6.695,
+  "p95_latency": 7.964,
+  "p99_latency": 7.964,
+  "latency_history": [
+    {
+      "timestamp": "2025-11-26T17:33:07.933016",
+      "latency": 5.425111293792725,
+      "success": true
+    },
+    {
+      "timestamp": "2025-11-26T17:33:20.200648",
+      "latency": 7.9639599323272705,
+      "success": true
+    }
+  ],
+  "avg_precision": 0,
+  "precision_history": [],
+  "tool_usage": {
+    "generar_carro_optimizado": 2
+  },
+  "total_tool_calls": 2,
+  "recent_errors": [],
+  "error_count": 0,
+  "avg_cpu_percent": 15.2,
+  "avg_memory_percent": 41.65,
+  "resource_usage": [
+    {
+      "timestamp": "2025-11-26T17:33:08.033812",
+      "cpu_percent": 9.9,
+      "memory_percent": 41.8,
+      "memory_used_mb": 13621.05078125
+    },
+    {
+      "timestamp": "2025-11-26T17:33:20.301406",
+      "cpu_percent": 20.5,
+      "memory_percent": 41.5,
+      "memory_used_mb": 13538.3203125
+    }
+  ],
+  "execution_traces": [
+    {
+      "timestamp": "2025-11-26T17:33:08.033828",
+      "request": "Genera un carro familiar para 4 personas con $30000",
+      "response": "Aquí tienes tu carro de compras familiar para 4 personas con un presupuesto de $30,000. 🛒\n\n### CARRO - Dieta FAMILIAR\n👥 **4 personas** | 💰 **$30,000.0**\n\n1. Compota vivo veggie pera manzana y espinaca 120 g - **$800**\n2. Pack barra cereal nature valley avena miel (6 un de 42 g) - **$5,050**\n3. Pack barra cereal nature valley almendra (6 un de 42 g) - **$5,050**\n4. Cereal vivo line costa hojuela integral 350 g - **$3,130**\n5. Cereal vivo check 3 cereales 360 g - **$3,000**\n6. Pack rollo de fruta ",
+      "tools_used": [
+        "generar_carro_optimizado"
+      ],
+      "latency": 5.425111293792725,
+      "success": true
+    },
+    {
+      "timestamp": "2025-11-26T17:33:20.301557",
+      "request": "Genera un carro familiar para 4 personas con $30000",
+      "response": "Aquí tienes tu carro de compras familiar para 4 personas con un presupuesto de $30,000. 🛒\n\n### CARRO - Dieta FAMILIAR\n👥 **4 personas** | 💰 **$30,000.0**\n\n1. Compota vivo veggie pera manzana y espinaca 120 g - **$800**\n2. Pack barra cereal nature valley avena miel (6 un de 42 g) - **$5,050**\n3. Pack barra cereal nature valley almendra (6 un de 42 g) - **$5,050**\n4. Cereal vivo line costa hojuela integral 350 g - **$3,130**\n5. Cereal vivo check 3 cereales 360 g - **$3,000**\n6. Pack rollo de fruta ",
+      "tools_used": [
+        "generar_carro_optimizado"
+      ],
+      "latency": 7.9639599323272705,
+      "success": true
+    }
+  ],
+  "consistency_checks": 2,
+  "generated_at": "2025-11-26T17:36:24.012559"
+}

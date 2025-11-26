@@ -1,0 +1,87 @@
+Proyecto GROZY Agent — Informe Técnico (Versión 1.0)
+Fecha: 26/11/2025
+
+1. Resumen Ejecutivo
+- Objetivo: Implementar un agente de compras (LangChain) con observabilidad, seguridad (IL3.3) y un dashboard web.
+- Resultado: Sistema unificado en Flask (puerto 5000) que sirve chatbot, API y dashboard. Observabilidad con 5 métricas (latencia, precisión, errores, CPU, memoria), trazabilidad y reportes. Seguridad con validación/sanitización, rate limiting, API keys, anonimización y headers.
+- Alcance: Backend Flask + LangChain, vector store FAISS, frontend HTML/CSS/JS con Chart.js, documentación y pruebas.
+
+2. Arquitectura y Componentes
+- Backend: `grozy_api.py` (Flask) integrando:
+  • Chatbot `/api/chat`, reset `/api/reset`, health `/api/health`
+  • Observabilidad: `/api/metrics`, `/api/metrics/summary`, `/api/metrics/traces`, `/api/metrics/errors`, `/api/report/generate`, `/api/metrics/export`
+  • Seguridad: `security_config.py` (validación/sanitización, rate limiting, API keys, anonimización, headers)
+- Agente: LangChain (`create_agent`) con herramientas de búsqueda, estadísticas y generación de carro.
+- Datos: `data/productos_unimarc_muestra.json` indexado en FAISS con `text-embedding-3-small`.
+- Frontend: `chatbot/` y `dashboard/` servido por Flask. Dashboard con Chart.js.
+- Observabilidad: `grozy_observability.py` con sistema de métricas, latencia P95/P99, trazas y exportación.
+
+3. Métricas y Trazabilidad
+- Latencia: promedio, P95, P99 por petición.
+- Precisión: selección de herramientas vs requeridas.
+- Errores: tasa y lista de últimos errores con contexto.
+- Recursos: CPU y memoria del host (psutil).
+- Consistencia: coherencia entre herramientas y respuesta final.
+- Trazabilidad: registro de mensajes, herramientas usadas, tiempos y resultados por solicitud.
+- Visualización: Dashboard (tarjetas y gráficos) actualizado cada 5s.
+
+4. Evidencias del Dashboard (IE8)
+- Visualizaciones incluidas:
+  • Gráfico de latencias (línea: promedio, P95, P99)
+  • Gráfico de uso de herramientas (barras)
+  • Gráfico de recursos del sistema (líneas CPU y memoria)
+  • Tabla de trazas y tabla de errores
+- Capturas sugeridas (pegar en Word):
+  • Captura 1: Vista general del dashboard (tarjetas + gráficos)
+  • Captura 2: Gráfico de latencias con múltiples consultas
+  • Captura 3: Tabla de trazas con herramientas usadas
+  • Captura 4: Tabla de errores recientes
+  • Captura 5: Página principal con enlaces a chatbot y dashboard
+
+5. Recomendaciones Técnicas (IE6, IE7)
+Basadas en métricas y trazabilidad:
+- Latencia
+  • Sugerencia: Reducir embeddings/FAISS a top-k óptimo (k=5–8). Justificación: latencia P95>2s en consultas con búsqueda amplia.
+  • Sugerencia: Cachear resultados de consultas frecuentes. Justificación: repetición de consultas incrementa latencia media.
+- Precisión
+  • Sugerencia: Ajustar prompts del sistema para selección de herramientas explícita. Justificación: discrepancias entre herramientas usadas y esperadas en tareas complejas.
+  • Sugerencia: Validación post-respuesta (consistencia) y re-llamado de herramienta si falta evidencia. Justificación: coherencia mejora la calidad percibida.
+- Errores
+  • Sugerencia: Manejo de excepciones y fallbacks (reintentos con timeout). Justificación: errores intermitentes en endpoints externos.
+  • Sugerencia: Alertas cuando error_rate > 5% (hook en `/api/metrics`). Justificación: reduce MTTR.
+- Recursos
+  • Sugerencia: Limitar concurrencia y fijar `psutil` umbrales para alertar CPU>80%, Memoria>75%. Justificación: picos degradan latencia.
+  • Sugerencia: Pre-carga FAISS y warm-up de embeddings en arranque. Justificación: reduce cold-start.
+- Seguridad (IL3.3)
+  • Sugerencia: Rotación de API keys cada 90 días y habilitar HTTPS en producción. Justificación: cumplimiento normativo y protección en tránsito.
+  • Sugerencia: Endpoints admin con doble verificación (API key + IP allowlist). Justificación: acceso a logs sensibles.
+
+6. Plan de Optimización
+- Corto plazo (1–2 semanas):
+  • Implementar cache de consultas y reducir k.
+  • Añadir reintentos con backoff para errores externos.
+  • Alertas básicas sobre error_rate y recursos.
+- Mediano plazo (1–2 meses):
+  • Afinar prompts y evaluar RAG con re-ranking.
+  • Instrumentación con tracing distribuido (OpenTelemetry).
+  • CDN para estáticos del dashboard.
+- Largo plazo (3–6 meses):
+  • Migrar a servidor de producción (uWSGI/Gunicorn + Nginx, HTTPS).
+  • Integración con Prometheus/Grafana.
+  • Pruebas de carga y ajuste de capacidad.
+
+7. Redacción Técnica (IE9)
+El sistema se describe con términos precisos (latencia, P95, FAISS, embeddings, sanitización, rate limiting), conexiones claras entre componentes y justificaciones basadas en métricas y trazabilidad. La estructura facilita comprensión y transferencia a un documento Word (capturas y gráficos sugeridos).
+
+8. Referencias (APA)
+- OpenAI. (2024). OpenAI API Documentation. https://platform.openai.com/docs
+- LangChain. (2024). LangChain Documentation. https://python.langchain.com/docs
+- FAISS. (2023). Facebook AI Similarity Search. https://github.com/facebookresearch/faiss
+- Chart.js. (2024). Chart.js Documentation. https://www.chartjs.org/docs/latest/
+- OWASP. (2021). OWASP Top Ten. https://owasp.org/www-project-top-ten/
+- European Union. (2016). General Data Protection Regulation (GDPR). https://gdpr.eu/
+
+9. Apéndice: Cómo obtener las capturas
+- Navega a `http://localhost:5000/dashboard/index.html` y usa Windows Snipping Tool para capturas.
+- Asegúrate de generar consultas previas en el chatbot para poblar métricas.
+- Guarda las capturas en formato PNG y pégalas en Word en las secciones indicadas.

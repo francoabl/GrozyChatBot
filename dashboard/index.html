@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GROZY - Dashboard de Observabilidad</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🤖 GROZY - Dashboard de Observabilidad</h1>
+                <p class="subtitle">Monitoreo en Tiempo Real del Agente de IA</p>
+            </div>
+            <div class="header-actions">
+                <button id="refreshBtn" class="btn btn-primary">
+                    <span class="icon">🔄</span> Actualizar
+                </button>
+                <button id="exportBtn" class="btn btn-secondary">
+                    <span class="icon">💾</span> Exportar
+                </button>
+                <button id="reportBtn" class="btn btn-secondary">
+                    <span class="icon">📄</span> Reporte
+                </button>
+            </div>
+        </header>
+
+        <!-- Métricas Principales -->
+        <section class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-icon">📊</div>
+                <div class="metric-content">
+                    <h3>Total Peticiones</h3>
+                    <p class="metric-value" id="totalRequests">0</p>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon">✅</div>
+                <div class="metric-content">
+                    <h3>Tasa de Éxito</h3>
+                    <p class="metric-value" id="successRate">0%</p>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon">⚡</div>
+                <div class="metric-content">
+                    <h3>Latencia Promedio</h3>
+                    <p class="metric-value" id="avgLatency">0s</p>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon">🎯</div>
+                <div class="metric-content">
+                    <h3>Precisión Promedio</h3>
+                    <p class="metric-value" id="avgPrecision">0%</p>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon">💻</div>
+                <div class="metric-content">
+                    <h3>CPU Promedio</h3>
+                    <p class="metric-value" id="avgCpu">0%</p>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon">💾</div>
+                <div class="metric-content">
+                    <h3>Memoria Promedio</h3>
+                    <p class="metric-value" id="avgMemory">0%</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gráficos y Análisis -->
+        <section class="charts-section">
+            <!-- Latencia -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h2>📈 Latencia en el Tiempo</h2>
+                    <div class="chart-stats">
+                        <span class="stat">P95: <strong id="p95Latency">0s</strong></span>
+                        <span class="stat">P99: <strong id="p99Latency">0s</strong></span>
+                    </div>
+                </div>
+                <canvas id="latencyChart"></canvas>
+            </div>
+
+            <!-- Uso de Herramientas -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h2>🔧 Uso de Herramientas</h2>
+                    <div class="chart-stats">
+                        <span class="stat">Total: <strong id="totalToolCalls">0</strong></span>
+                    </div>
+                </div>
+                <canvas id="toolsChart"></canvas>
+            </div>
+
+            <!-- Recursos del Sistema -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h2>💻 Uso de Recursos</h2>
+                </div>
+                <canvas id="resourcesChart"></canvas>
+            </div>
+
+            <!-- Tasa de Errores -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h2>❌ Tasa de Errores</h2>
+                    <div class="chart-stats">
+                        <span class="stat">Errores: <strong id="errorCount">0</strong></span>
+                    </div>
+                </div>
+                <canvas id="errorsChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Trazas de Ejecución -->
+        <section class="traces-section">
+            <div class="section-header">
+                <h2>🔍 Trazas de Ejecución Recientes</h2>
+                <button id="refreshTracesBtn" class="btn btn-small">
+                    <span class="icon">🔄</span>
+                </button>
+            </div>
+            <div id="tracesContainer" class="traces-container">
+                <p class="empty-state">No hay trazas disponibles</p>
+            </div>
+        </section>
+
+        <!-- Errores Recientes -->
+        <section class="errors-section">
+            <div class="section-header">
+                <h2>⚠️ Errores Recientes</h2>
+                <button id="refreshErrorsBtn" class="btn btn-small">
+                    <span class="icon">🔄</span>
+                </button>
+            </div>
+            <div id="errorsContainer" class="errors-container">
+                <p class="empty-state">No hay errores registrados</p>
+            </div>
+        </section>
+
+        <!-- Análisis y Recomendaciones -->
+        <section class="analysis-section">
+            <div class="section-header">
+                <h2>📊 Análisis y Recomendaciones</h2>
+            </div>
+            <div id="analysisContainer" class="analysis-container">
+                <div class="analysis-item">
+                    <div class="analysis-icon">ℹ️</div>
+                    <div class="analysis-content">
+                        <h3>Cargando análisis...</h3>
+                        <p>Actualizando datos de observabilidad</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>GROZY Observability Dashboard v1.0 | Última actualización: <span id="lastUpdate">--</span></p>
+        </footer>
+    </div>
+
+    <!-- Modal para Reporte -->
+    <div id="reportModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📄 Reporte de Análisis</h2>
+                <button id="closeModalBtn" class="btn-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <pre id="reportContent">Generando reporte...</pre>
+            </div>
+            <div class="modal-footer">
+                <button id="copyReportBtn" class="btn btn-primary">Copiar</button>
+                <button id="downloadReportBtn" class="btn btn-secondary">Descargar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

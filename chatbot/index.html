@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GROZY - Asistente de Compras Inteligente</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🛒</span>
+                <h1>GROZY</h1>
+            </div>
+            <p class="subtitle">Tu asistente inteligente de compras</p>
+        </header>
+
+        <!-- Chat Container -->
+        <div class="chat-container" id="chatContainer">
+            <!-- Mensaje de bienvenida -->
+            <div class="message bot-message">
+                <div class="message-avatar">🤖</div>
+                <div class="message-content">
+                    <p>¡Hola! Soy GROZY, tu asistente de compras. 🛒</p>
+                    <p>Puedo ayudarte a:</p>
+                    <ul>
+                        <li>🔍 Buscar productos específicos</li>
+                        <li>📊 Ver estadísticas de productos</li>
+                        <li>🛒 Generar carros de compra optimizados</li>
+                    </ul>
+                    <p><strong>Ejemplos:</strong></p>
+                    <ul>
+                        <li>"Busca lácteos bajos en grasa"</li>
+                        <li>"Dame estadísticas de productos"</li>
+                        <li>"Genera un carro vegetariano para 3 personas con $25000"</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Container -->
+        <div class="input-container">
+            <div class="quick-actions">
+                <button class="quick-btn" onclick="sendQuickMessage('Dame estadísticas de productos')">
+                    📊 Estadísticas
+                </button>
+                <button class="quick-btn" onclick="sendQuickMessage('Busca frutas frescas')">
+                    🍎 Buscar Frutas
+                </button>
+                <button class="quick-btn" onclick="sendQuickMessage('Genera un carro familiar para 4 personas con $30000')">
+                    🛒 Generar Carro
+                </button>
+            </div>
+            
+            <div class="input-wrapper">
+                <textarea 
+                    id="userInput" 
+                    placeholder="Escribe tu mensaje aquí..." 
+                    rows="1"
+                    onkeypress="handleKeyPress(event)"
+                ></textarea>
+                <button id="sendButton" onclick="sendMessage()">
+                    <span id="sendIcon">📤</span>
+                </button>
+            </div>
+            
+            <div class="controls">
+                <button class="control-btn" onclick="resetChat()">
+                    🔄 Nueva Conversación
+                </button>
+                <span class="status" id="status">● Listo</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+# ===================================================
+# REQUISITOS PARA EL PROYECTO GROZY
+# Agente Inteligente de Optimización de Compras
+# CON SISTEMA DE OBSERVABILIDAD
+# ===================================================
+
+# Framework de Agentes
+langchain>=0.1.0
+langchain-openai>=0.0.5
+langchain-community>=0.0.20
+langchain-core>=0.1.23
+
+# LLM y Embeddings
+openai>=1.0.0
+
+# Vector Store y Búsqueda
+faiss-cpu>=1.7.4
+
+# Utilidades
+python-dotenv>=1.0.0
+
+# API Web (para chatbot y observabilidad)
+flask>=3.0.0
+flask-cors>=4.0.0
+
+# Observabilidad y Monitoreo
+psutil>=5.9.0
+
+# Seguridad
+bleach>=6.0.0
+
+# Opcional: Para notebook interactivo
+jupyter>=1.0.0
+ipykernel>=6.0.0
